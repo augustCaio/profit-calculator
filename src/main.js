@@ -27,39 +27,45 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Removi o 200% e mantive 50%, 70% e 100%
-    const profitMargins = [0.5, 0.7, 1];
+    // Percentuais de margem para comparação
+    const marginPercentages = [0.3, 0.5, 0.7];
 
-    const results = profitMargins.map((margin) => {
-      // Fórmula: Preço de Venda = Custo do Produto / (1 - Margem de Lucro Desejada)
-      const sellPrice = costPrice / (1 - margin);
+    const results = marginPercentages.map((desiredMargin) => {
+      // Cálculo do preço de venda baseado na margem desejada
+      // Fórmula: Receita = Custo / (1 - Margem Desejada)
+      const salePrice = costPrice / (1 - desiredMargin);
 
       return {
-        margin: `${margin * 100}%`,
+        margin: `${desiredMargin * 100}%`,
         costPrice: new Intl.NumberFormat("pt-BR", {
           style: "currency",
           currency: "BRL",
         }).format(costPrice),
-        sellPrice: new Intl.NumberFormat("pt-BR", {
+        salePrice: new Intl.NumberFormat("pt-BR", {
           style: "currency",
           currency: "BRL",
-        }).format(sellPrice),
+        }).format(salePrice),
         profit: new Intl.NumberFormat("pt-BR", {
           style: "currency",
           currency: "BRL",
-        }).format(sellPrice - costPrice),
+        }).format(salePrice - costPrice),
+        profitPercentage: `${(
+          ((salePrice - costPrice) / salePrice) *
+          100
+        ).toFixed(2)}%`,
       };
     });
 
-    // Atualizar a tabela com resultados mais detalhados
+    // Atualizar a tabela com resultados
     resultsBody.innerHTML = results
       .map(
         (result) => `
             <tr>
                 <td class="p-2">${result.margin}</td>
                 <td class="p-2">${result.costPrice}</td>
-                <td class="p-2">${result.sellPrice}</td>
+                <td class="p-2">${result.salePrice}</td>
                 <td class="p-2">${result.profit}</td>
+                <td class="p-2">${result.profitPercentage}</td>
             </tr>
         `
       )

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculadora de Preço de Venda</title>
+    <title>Calculadora de Margem de Lucro</title>
     <link href="src/style.css" rel="stylesheet" />
     <script src="src/main.js" type="module" defer></script>
   </head>
@@ -18,7 +18,7 @@
       />
     </header>
 
-    <main class="w-full max-w-2xl">
+    <main class="w-full max-w-4xl">
       <section class="flex flex-col sm:flex-row gap-2 mb-6">
         <div class="flex-grow">
           <label
@@ -38,7 +38,7 @@
           id="calculate-button"
           class="mt-6 w-full sm:w-auto bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition-colors"
         >
-          Calcular Preço de Venda
+          Calcular Margem de Lucro
         </button>
       </section>
 
@@ -49,14 +49,16 @@
         <table class="w-full text-center">
           <thead class="bg-gray-200">
             <tr>
-              <th class="p-2">Margem</th>
+              <th class="p-2">Margem Desejada</th>
               <th class="p-2">Custo</th>
               <th class="p-2">Preço Venda</th>
               <th class="p-2">Lucro</th>
+              <th class="p-2">% Lucro Líquido</th>
             </tr>
           </thead>
           <tbody id="results-body">
             <tr>
+              <td class="p-2">-</td>
               <td class="p-2">-</td>
               <td class="p-2">-</td>
               <td class="p-2">-</td>
